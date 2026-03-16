@@ -7,14 +7,12 @@ const pub = redis.duplicate();
 await Promise.all([redis.connect(), pub.connect()]);
 
 const screen = blessed.screen();
+
 const grid = new contrib.grid({ rows: 12, cols: 12, screen });
+
 const line = grid.set(0, 0, 8, 12, contrib.line, {
   label: " Cluster Latency P99 (ms) ",
   style: { line: "yellow" },
 });
 
-screen.render();
-
-screen.key(["q", "C-c"], () => {
-  return process.exit(0);
-});
+const log = grid.set(8, 0, 4, 12, contrib.log, { label: " Telemetry " });
