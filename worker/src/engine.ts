@@ -22,6 +22,10 @@ export class LoadEngine {
       while (this.active && Date.now() < end) {
         const start = performance.now();
         try {
+          const res = await this.http({
+            method: config.method,
+            url: config.targetUrl,
+          });
         } catch (err) {
           await this.onReport({
             nodeId: this.nodeId,
