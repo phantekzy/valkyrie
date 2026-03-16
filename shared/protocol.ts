@@ -10,3 +10,10 @@ export interface AttackConfig {
   duration: number;
   method: "GET" | "POST";
 }
+
+export interface TelemetryEvent {
+  nodeId: string;
+  status: number;
+  latency: number;
+  ts: number;
+}
