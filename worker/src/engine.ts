@@ -1,6 +1,5 @@
-import { AxiosInstance } from "axios";
-import { TelemetryEvent } from "../../shared/protocol";
-import axios from "axios";
+import axios, { AxiosInstance } from "axios";
+import { AttackConfig, TelemetryEvent } from "../../shared/protocol.js";
 
 export class LoadEngine {
   private active = false;
@@ -14,5 +13,10 @@ export class LoadEngine {
       timeout: 5000,
       validateStatus: () => true,
     });
+  }
+
+  async start(config: AttackConfig) {
+    this.active = true;
+    const end = Date.now() + config.duration * 1000;
   }
 }
