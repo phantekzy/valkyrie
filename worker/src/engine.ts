@@ -16,5 +16,10 @@ export class LoadEngine {
   async start(config: any) {
     this.active = true;
     const end = Date.now() + config.duration * 1000;
+    const lanes = Array.from({ length: config.concurrency }).map(async () => {
+      while (this.active && Date.now() < end) {
+        const start = performance.now();
+      }
+    });
   }
 }
