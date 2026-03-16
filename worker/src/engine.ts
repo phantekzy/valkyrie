@@ -26,6 +26,12 @@ export class LoadEngine {
             method: config.method,
             url: config.targetUrl,
           });
+          await this.onReport({
+            nodeId: this.nodeId,
+            status: res.status,
+            latency: performance.now() - start,
+            ts: Date.now(),
+          });
         } catch (err) {
           await this.onReport({
             nodeId: this.nodeId,
@@ -36,5 +42,12 @@ export class LoadEngine {
         }
       }
     });
+
+    await Promise.all(lanes);
+    this.active = false;
+  }
+
+  stop() {
+    this.active = false;
   }
 }
