@@ -60,7 +60,8 @@ const table = grid.set(4, 0, 4, 9, contrib.table, {
 const gauge = grid.set(4, 9, 4, 3, contrib.gauge, {
   label: " [ LOAD ] ",
   stroke: "cyan",
-  fill: "white",
+  fill: "black",
+  fg: "white",
 });
 
 const log = grid.set(8, 0, 3, 12, contrib.log, {
@@ -180,6 +181,7 @@ function cycleTheme() {
 
   line.style.line = p.main;
   gauge.style.stroke = p.accent;
+  gauge.style.fg = p.main;
   actionBar.style.selected.bg = p.main;
   log.log(`{yellow-fg}[SYSTEM]{/} Applied palette: ${p.name}`);
   screen.render();
