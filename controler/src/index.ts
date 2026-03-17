@@ -26,5 +26,18 @@ async function main() {
       "0",
       { MKSTREAM: true },
     );
-  } catch {}
+  } catch (e: any) {
+    if (!e.message.includes("BUSYGROUP")) {
+      console.error("Actual Redis Error:", e);
+      process.exit(1);
+    }
+  }
+  while (true) {
+    const data = await redis.xReadGroup(
+      REDIS_KEYS.GROUP_NAME,
+      "c-main",
+      { key: REDIS_KEYS.TELEMETRY_STREAM, id: ">" },
+      { COUNT: 50, BLOCK: 100 },
+    );
+  }
 }
