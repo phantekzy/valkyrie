@@ -1,6 +1,7 @@
 import { createClient } from "redis";
 import blessed from "blessed";
 import contrib from "blessed-contrib";
+import { REDIS_KEYS } from "../../shared/protocol.js";
 
 const redis = createClient({ url: "redis://127.0.0.1:6379" });
 const pub = redis.duplicate();
@@ -16,4 +17,14 @@ const log = grid.set(8, 0, 4, 12, contrib.log, { label: " Telemetry " });
 
 const chartData = { title: "P99", x: [] as string[], y: [] as number[] };
 let rawLatencies: number[] = [];
-screen.render();
+
+async function main() {
+  try {
+    await redis.xGroupCreate(
+      REDIS_KEYS.TELEMETRY_STREAM,
+      REDIS_KEYS.GROUP_NAME,
+      "0",
+      { MKSTREAM: true },
+    );
+  } catch {}
+}
