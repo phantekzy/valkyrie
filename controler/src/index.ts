@@ -47,6 +47,11 @@ async function main() {
 
         const sorted = [...rawLatencies].sort((a, b) => a - b);
         const p99 = sorted[Math.ceil(sorted.length * 0.99) - 1];
+
+        chartData.y.push(p99);
+        chartData.x.push(
+          new Date(parseInt(m.data.ts)).toLocaleTimeString().slice(-5),
+        );
       });
     }
   }
