@@ -52,6 +52,10 @@ async function main() {
         chartData.x.push(
           new Date(parseInt(m.data.ts)).toLocaleTimeString().slice(-5),
         );
+        if (chartData.y.length > 30) {
+          chartData.y.shift();
+          chartData.x.shift();
+        }
       });
     }
   }
