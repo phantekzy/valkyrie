@@ -6,9 +6,9 @@ Valkyrie is a high-velocity, asynchronous traffic orchestration framework design
 
 The system operates on a State-Synchronized model orchestrated via a high-throughput Redis message bus.
 
-1.  **Command & Control (Controller):** A centralized TUI dashboard built on the Blessed-contrib engine. It broadcasts operational signals (START, UPDATE, STOP) and aggregates telemetry batches into visual performance metrics.
-2.  **Orchestration (Broker):** Managed by Redis, the system utilizes Pub/Sub for low-latency command propagation and Redis Streams for persistent telemetry buffering and consumer group management.
-3.  **Execution (Worker):** Stateless, horizontally scalable agents that monitor the command channel. Workers spawn asynchronous HTTP "lanes" with isolated reporting logic to ensure maximum target saturation.
+1. **Command & Control (Controller):** A centralized TUI dashboard built on the Blessed-contrib engine. It broadcasts operational signals (START, UPDATE, STOP) and aggregates telemetry batches into visual performance metrics.
+2. **Orchestration (Broker):** Managed by Redis, the system utilizes Pub/Sub for low-latency command propagation and Redis Streams for persistent telemetry buffering and consumer group management.
+3. **Execution (Worker):** Stateless, horizontally scalable agents that monitor the command channel. Workers spawn asynchronous HTTP "lanes" with isolated reporting logic to ensure maximum target saturation.
 
 ---
 
@@ -37,8 +37,8 @@ The system maintains a unified TypeScript protocol layer. The 'AttackConfig' and
 Configuration is driven strictly via environment variables to ensure zero-leak security. Hardcoded IP addresses and internal endpoints are prohibited.
 
 ### Global Configuration
-- **VALKYRIE_REDIS_URL**: The full connection string for the Redis broker.
-- **VALKYRIE_TARGET_URL**: The designated endpoint for load generation operations.
+* **VALKYRIE_REDIS_URL**: The full connection string for the Redis broker.
+* **VALKYRIE_TARGET_URL**: The designated endpoint for load generation operations.
 
 ---
 
@@ -64,7 +64,3 @@ The TUI provides granular control over the cluster lifecycle:
 
 ---
 
-## Author
-Maini Lotfi Abdelkader (phantekzy)
-Systems Engineer & Full Stack Developer
-Algiers, Algeria
