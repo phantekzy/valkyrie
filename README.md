@@ -1,3 +1,4 @@
+#!/bin/bash
 
 # VALKYRIE README GENERATOR
 # Run this script to create/overwrite the project documentation.
